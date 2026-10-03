@@ -5,7 +5,6 @@ const HOUR = 60 * 60 * 1000;
 
 describe('storage cache', () => {
   afterEach(() => {
-    window.localStorage.clear();
     vi.restoreAllMocks();
   });
 

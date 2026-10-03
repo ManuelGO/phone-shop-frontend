@@ -20,7 +20,6 @@ describe('api client', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
     vi.useRealTimers();
-    window.localStorage.clear();
   });
 
   it('sends JSON bodies and returns the parsed response', async () => {
