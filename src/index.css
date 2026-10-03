@@ -1,0 +1,37 @@
+:root {
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-surface: #ffffff;
+  --color-background: #f9fafb;
+  --color-accent: #1f2937;
+  --radius: 8px;
+  --max-width: 1200px;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
