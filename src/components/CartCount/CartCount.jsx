@@ -25,7 +25,7 @@ export function CartCount() {
       <span className={styles.count} aria-hidden="true">
         {count}
       </span>
-      <span className={styles.visuallyHidden}>{label}</span>
+      <span className="visually-hidden">{label}</span>
     </div>
   );
 }

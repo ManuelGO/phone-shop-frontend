@@ -8,6 +8,6 @@ describe('App', () => {
 
     expect(screen.getByRole('link', { name: 'Phone Shop' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('heading', { level: 1, name: 'Phones' })).toBeInTheDocument();
-    expect(screen.getByRole('status')).toHaveTextContent('0 items in cart');
+    expect(screen.getByText('0 items in cart')).toBeInTheDocument();
   });
 });

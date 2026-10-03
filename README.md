@@ -5,7 +5,8 @@ views: a product list with live search, and a product detail page where you pick
 and colour before adding the phone to the cart.
 
 It was built as a front-end technical exercise with React 19, Vite and React Router, in
-plain JavaScript. The backend lives in a separate repository.
+plain JavaScript. It uses the product API provided for the exercise at
+`https://itx-frontend-test.onrender.com/api`.
 
 ## Requirements
 

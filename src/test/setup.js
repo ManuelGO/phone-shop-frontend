@@ -1,6 +1,12 @@
 import '@testing-library/jest-dom/vitest';
-import { afterEach } from 'vitest';
+import { afterAll, afterEach, beforeAll } from 'vitest';
+import { server } from './mocks/server.js';
+
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
 afterEach(() => {
+  server.resetHandlers();
   window.localStorage.clear();
 });
+
+afterAll(() => server.close());
