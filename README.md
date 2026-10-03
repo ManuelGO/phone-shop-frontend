@@ -36,6 +36,24 @@ The app runs at http://localhost:3000.
 | `npm run format:check` | Checks formatting without changing files           |
 | `npm run preview`      | Serves the production build locally                |
 
+## Configuration
+
+The app talks to `https://itx-frontend-test.onrender.com/api` by default. To point it at a
+different backend, copy `.env.example` to `.env.local` and change the value:
+
+```bash
+VITE_API_BASE_URL=https://itx-frontend-test.onrender.com/api
+```
+
+## Data caching
+
+Product data is cached in `localStorage` for one hour. Within that window, the list and
+detail pages are served from the cache without calling the API again. Once an entry
+expires, the next visit fetches it again. Adding to the cart is never cached.
+
+The API is hosted on a free tier and can take up to a minute to respond after a period of
+inactivity, so the first load may be slow.
+
 ## Tech stack
 
 - [React 19](https://react.dev) for the UI
