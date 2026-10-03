@@ -26,14 +26,15 @@ The app runs at http://localhost:3000.
 
 ## Scripts
 
-| Command           | What it does                                       |
-| ----------------- | -------------------------------------------------- |
-| `npm start`       | Starts the development server with hot reload      |
-| `npm run build`   | Builds an optimised production bundle into `dist/` |
-| `npm test`        | Runs the test suite once                           |
-| `npm run lint`    | Checks the code with ESLint                        |
-| `npm run format`  | Formats the code with Prettier                     |
-| `npm run preview` | Serves the production build locally                |
+| Command                | What it does                                       |
+| ---------------------- | -------------------------------------------------- |
+| `npm start`            | Starts the development server with hot reload      |
+| `npm run build`        | Builds an optimised production bundle into `dist/` |
+| `npm test`             | Runs the test suite once                           |
+| `npm run lint`         | Checks the code with ESLint                        |
+| `npm run format`       | Formats the code with Prettier                     |
+| `npm run format:check` | Checks formatting without changing files           |
+| `npm run preview`      | Serves the production build locally                |
 
 ## Tech stack
 
@@ -42,6 +43,12 @@ The app runs at http://localhost:3000.
 - [React Router](https://reactrouter.com) for client-side routing
 - [Vitest](https://vitest.dev) and [Testing Library](https://testing-library.com) for tests
 - ESLint and Prettier for code quality
+
+## Continuous integration
+
+Every pull request and every push to `main` runs lint, the formatting check, the tests and
+the production build on Node 22 and 24 through GitHub Actions. A pull request can only be
+merged once these checks pass.
 
 ## Project status
 
