@@ -17,7 +17,6 @@ describe('product and cart endpoints', () => {
 
   afterEach(() => {
     vi.unstubAllGlobals();
-    window.localStorage.clear();
   });
 
   it('getProducts returns mapped summaries', async () => {
