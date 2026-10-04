@@ -43,14 +43,24 @@ export async function request(path, { method = 'GET', body, signal } = {}) {
   return data;
 }
 
+const inFlight = new Map();
+
 // Reads are cached on the client for CACHE_TTL_MS so repeat visits don't hit
-// the API. Once an entry expires, the next read fetches it again.
-export async function cachedGet(path, { signal } = {}) {
+// the API. Once an entry expires, the next read fetches it again. Concurrent
+// reads of the same path share one request.
+export function cachedGet(path) {
   const cacheKey = `GET ${path}`;
   const cached = getCached(cacheKey);
-  if (cached !== null) return cached;
+  if (cached !== null) return Promise.resolve(cached);
 
-  const data = await request(path, { signal });
-  setCached(cacheKey, data, CACHE_TTL_MS);
-  return data;
+  if (!inFlight.has(cacheKey)) {
+    const pending = request(path)
+      .then((data) => {
+        setCached(cacheKey, data, CACHE_TTL_MS);
+        return data;
+      })
+      .finally(() => inFlight.delete(cacheKey));
+    inFlight.set(cacheKey, pending);
+  }
+  return inFlight.get(cacheKey);
 }

@@ -73,6 +73,15 @@ describe('api client', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
+  it('shares one request between concurrent reads of the same path', async () => {
+    fetchMock.mockImplementation(() => Promise.resolve(jsonResponse([{ id: 'a' }])));
+
+    const [first, second] = await Promise.all([cachedGet('/product'), cachedGet('/product')]);
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(first).toEqual(second);
+  });
+
   it('does not cache failed reads', async () => {
     fetchMock
       .mockResolvedValueOnce(jsonResponse({ message: 'boom' }, 500))

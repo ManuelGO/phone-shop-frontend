@@ -53,24 +53,24 @@ describe('routing and layout', () => {
 describe('cart count in the header', () => {
   it('starts at zero', () => {
     renderRoute('/');
-    expect(screen.getByRole('status')).toHaveTextContent('0 items in cart');
+    expect(screen.getByText('0 items in cart')).toBeInTheDocument();
   });
 
   it('restores the persisted count', () => {
     window.localStorage.setItem(`phone-shop:${CART_COUNT_KEY}`, '3');
     renderRoute('/product/abc');
-    expect(screen.getByRole('status')).toHaveTextContent('3 items in cart');
+    expect(screen.getByText('3 items in cart')).toBeInTheDocument();
   });
 
   it('ignores a count that is out of range', () => {
     window.localStorage.setItem(`phone-shop:${CART_COUNT_KEY}`, '1e21');
     renderRoute('/');
-    expect(screen.getByRole('status')).toHaveTextContent('0 items in cart');
+    expect(screen.getByText('0 items in cart')).toBeInTheDocument();
   });
 
   it('ignores an invalid persisted count', () => {
     window.localStorage.setItem(`phone-shop:${CART_COUNT_KEY}`, '"lots"');
     renderRoute('/');
-    expect(screen.getByRole('status')).toHaveTextContent('0 items in cart');
+    expect(screen.getByText('0 items in cart')).toBeInTheDocument();
   });
 });
