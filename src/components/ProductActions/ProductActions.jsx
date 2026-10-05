@@ -7,7 +7,7 @@ function defaultFor(options) {
   return options.length === 1 ? options[0].code : null;
 }
 
-export function ProductActions({ options, onAdd, isAdding = false }) {
+export function ProductActions({ options, onAdd, isAdding = false, feedback = null }) {
   const [storageCode, setStorageCode] = useState(() => defaultFor(options.storages));
   const [colorCode, setColorCode] = useState(() => defaultFor(options.colors));
 
@@ -41,6 +41,16 @@ export function ProductActions({ options, onAdd, isAdding = false }) {
           {isAdding ? 'Adding…' : 'Add to cart'}
         </Button>
         {!isComplete && <p className={styles.hint}>Choose a storage and colour to continue.</p>}
+        <div aria-live="polite" className={styles.feedbackArea}>
+          {feedback?.type === 'success' && (
+            <p className={`${styles.feedback} ${styles.success}`}>{feedback.message}</p>
+          )}
+        </div>
+        {feedback?.type === 'error' && (
+          <p role="alert" className={`${styles.feedback} ${styles.error}`}>
+            {feedback.message}
+          </p>
+        )}
       </form>
     </section>
   );

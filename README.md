@@ -55,6 +55,13 @@ expires, the next visit fetches it again. Adding to the cart is never cached.
 The API is hosted on a free tier and can take up to a minute to respond after a period of
 inactivity, so the first load may be slow.
 
+## Cart count
+
+The cart endpoint answers every request with `count: 1` rather than the number of items in
+the cart, so the app keeps the running total itself. Each successful add increases it by the
+returned count, and the total is saved in `localStorage` so it shows in the header on every
+page and after a reload. Open tabs stay in sync.
+
 ## Tech stack
 
 - [React 19](https://react.dev) for the UI
