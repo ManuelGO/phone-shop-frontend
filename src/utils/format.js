@@ -8,3 +8,7 @@ const priceFormatter = new Intl.NumberFormat('en-IE', {
 export function formatPrice(price) {
   return typeof price === 'number' ? priceFormatter.format(price) : 'Price not available';
 }
+
+export function formatWeight(grams) {
+  return typeof grams === 'number' ? `${grams} g` : null;
+}
