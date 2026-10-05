@@ -1,0 +1,23 @@
+.actions {
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.add {
+  width: 100%;
+  padding-block: 0.875rem;
+}
+
+.hint {
+  margin: -0.5rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}

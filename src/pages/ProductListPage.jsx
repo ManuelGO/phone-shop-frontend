@@ -1,5 +1,6 @@
 import { useDeferredValue, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
+import { Button } from '../components/Button/Button.jsx';
 import { ProductGrid } from '../components/ProductGrid/ProductGrid.jsx';
 import { SearchBar } from '../components/SearchBar/SearchBar.jsx';
 import { StatusMessage } from '../components/StatusMessage/StatusMessage.jsx';
@@ -24,6 +25,7 @@ export function ProductListPage() {
 
   return (
     <>
+      <title>Phones | Phone Shop</title>
       <div className={styles.toolbar}>
         <div>
           <h1 className={styles.title}>Phones</h1>
@@ -47,9 +49,9 @@ export function ProductListPage() {
           role="alert"
           title="We couldn't load the phones"
           action={
-            <button type="button" className={styles.retry} onClick={retry}>
+            <Button className={styles.retry} onClick={retry}>
               Try again
-            </button>
+            </Button>
           }
         >
           {error?.message}
