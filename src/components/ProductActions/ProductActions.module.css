@@ -21,3 +21,24 @@
   font-size: 0.875rem;
   color: var(--color-muted);
 }
+
+.feedbackArea:empty {
+  display: none;
+}
+
+.feedback {
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+}
+
+.success {
+  background: #ecfdf3;
+  color: #05603a;
+}
+
+.error {
+  background: #fef3f2;
+  color: #b42318;
+}
