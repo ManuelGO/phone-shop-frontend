@@ -2,6 +2,8 @@
   --color-text: #111827;
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
+  /* Borders that identify a control need 3:1 against the surface (WCAG 1.4.11). */
+  --color-control-border: #878d96;
   --color-surface: #ffffff;
   --color-background: #f9fafb;
   --color-accent: #1f2937;
@@ -24,6 +26,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  /* Keeps focused elements clear of the sticky header. */
+  scroll-padding-top: 5rem;
 }
 
 body {
