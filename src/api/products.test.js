@@ -50,3 +50,23 @@ describe('product and cart endpoints', () => {
     });
   });
 });
+
+describe('unexpected API responses', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('getProducts returns an empty list when the response is not a list', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(jsonResponse({ message: 'nope' })));
+    await expect(getProducts()).resolves.toEqual([]);
+  });
+
+  it('getProduct rejects with a not found error when the response is empty', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response('', { status: 200 })));
+    await expect(getProduct('missing')).rejects.toMatchObject({
+      name: 'ApiError',
+      message: 'Product not found',
+      status: 404,
+    });
+  });
+});

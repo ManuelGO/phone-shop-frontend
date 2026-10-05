@@ -91,3 +91,22 @@ describe('api client', () => {
     await expect(cachedGet('/product')).resolves.toEqual([{ id: 'a' }]);
   });
 });
+
+describe('api client with a non-JSON error body', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('falls back to a generic message with the status code', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(new Response('<html>Bad Gateway</html>', { status: 502 })),
+    );
+
+    await expect(request('/product')).rejects.toMatchObject({
+      name: 'ApiError',
+      message: 'Request failed with status 502',
+      status: 502,
+    });
+  });
+});
