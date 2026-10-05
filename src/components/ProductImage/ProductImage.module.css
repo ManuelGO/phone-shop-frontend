@@ -1,0 +1,17 @@
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 5;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.image {
+  width: auto;
+  height: 100%;
+  max-height: 24rem;
+  object-fit: contain;
+}

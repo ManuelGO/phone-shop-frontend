@@ -1,3 +1,4 @@
+import { ProductCrumb } from './components/ProductCrumb/ProductCrumb.jsx';
 import { Layout } from './components/Layout/Layout.jsx';
 import { AppErrorPage } from './pages/AppErrorPage.jsx';
 import { ErrorPage } from './pages/ErrorPage.jsx';
@@ -19,7 +20,7 @@ export const routes = [
           {
             path: 'product/:id',
             element: <ProductDetailPage />,
-            handle: { crumb: () => 'Product details' },
+            handle: { crumb: (match) => <ProductCrumb id={match.params.id} /> },
           },
           {
             path: '*',

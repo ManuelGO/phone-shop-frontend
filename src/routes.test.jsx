@@ -16,27 +16,28 @@ describe('routing and layout', () => {
     expect(breadcrumbs().getByText('Home')).toHaveAttribute('aria-current', 'page');
   });
 
-  it('shows the detail page with a breadcrumb trail back home', () => {
-    renderRoute('/product/abc');
+  it('shows the detail page with a breadcrumb trail back home', async () => {
+    renderRoute('/product/apple-iphone-8');
 
-    expect(screen.getByRole('heading', { level: 1, name: 'Product details' })).toBeInTheDocument();
-    expect(breadcrumbs().getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
     expect(breadcrumbs().getByText('Product details')).toHaveAttribute('aria-current', 'page');
+    expect(await screen.findByRole('heading', { level: 1, name: 'iPhone 8' })).toBeInTheDocument();
+    expect(breadcrumbs().getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
+    expect(breadcrumbs().getByText('Apple iPhone 8')).toHaveAttribute('aria-current', 'page');
   });
 
   it('navigates home from the header title', async () => {
     const user = userEvent.setup();
-    const { router } = renderRoute('/product/abc');
+    const { router } = renderRoute('/product/apple-iphone-8');
 
     await user.click(screen.getByRole('link', { name: 'Phone Shop' }));
 
     expect(router.state.location.pathname).toBe('/');
-    expect(screen.getByRole('heading', { level: 1, name: 'Phones' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { level: 1, name: 'Phones' })).toBeInTheDocument();
   });
 
   it('navigates back to the list from the detail page link', async () => {
     const user = userEvent.setup();
-    const { router } = renderRoute('/product/abc');
+    const { router } = renderRoute('/product/apple-iphone-8');
 
     await user.click(screen.getByRole('link', { name: 'Back to all phones' }));
 
@@ -58,7 +59,7 @@ describe('cart count in the header', () => {
 
   it('restores the persisted count', () => {
     window.localStorage.setItem(`phone-shop:${CART_COUNT_KEY}`, '3');
-    renderRoute('/product/abc');
+    renderRoute('/product/apple-iphone-8');
     expect(screen.getByText('3 items in cart')).toBeInTheDocument();
   });
 
