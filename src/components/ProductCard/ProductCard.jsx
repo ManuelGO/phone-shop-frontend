@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { formatPrice } from '../../utils/format.js';
+import { PhoneImage } from '../PhoneImage/PhoneImage.jsx';
 import styles from './ProductCard.module.css';
 
 export function ProductCard({ product }) {
@@ -8,7 +9,7 @@ export function ProductCard({ product }) {
   return (
     <Link to={`/product/${encodeURIComponent(id)}`} className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img
+        <PhoneImage
           className={styles.image}
           src={imageUrl}
           alt={`${brand} ${model}`}
