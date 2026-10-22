@@ -110,6 +110,9 @@ never reach the real server.
 - **Plain JavaScript,** as the brief prefers it over TypeScript. Styles are CSS modules, so
   each component keeps its own styles without a CSS-in-JS dependency.
 
+The full requirements, milestone history, API findings and decision log are in
+[docs/SPEC.md](docs/SPEC.md).
+
 ## Tech stack
 
 - [React 19](https://react.dev) for the UI
